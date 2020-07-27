@@ -12,7 +12,8 @@
 function setup() { 
   
     // Create canvas 
-    createCanvas(400, 400); 
+    createCanvas(400, 400);
+    frameRate(1); 
 } 
    
 function draw() { 
@@ -27,15 +28,11 @@ function draw() {
     // Draw circle
       
     circle(mouseX, mouseY, 20);
-    if (mouseIsPressed) {
-        
-    }
-}
-function doubleClicked() {
+    if (true) {
         yslider = map(mouseY, 0, 400, 2, 12)  
-        xslider = map(mouseX, 0, 400, 2, 12)
+        xslider = map(mouseX, 0, 400, 12, 2)
         console.log(xslider)
-        document.querySelector('#y').value =  yslider //(yslider+6)%12 +2;
+        document.querySelector('#y').value =  yslider; //(yslider+6)%12 +2;
         document.querySelector('#x').value =  xslider;
         var xhr = new XMLHttpRequest();
         xhr.open("POST", window.location.href+'move', true);
@@ -44,5 +41,8 @@ function doubleClicked() {
                 x: parseInt(xslider),
                 y: parseInt(yslider)
             }));
+    }
 }
+//function doubleClicked() {
+//}
 </script>
