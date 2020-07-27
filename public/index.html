@@ -1,0 +1,48 @@
+<form action="/move/" method="post">
+    <label for="x">Enter X: </label>
+    <input id="x" name="x" type="range" min="2" max="12" value="2">
+    <br>
+        <label for="y">Enter Y: </label>
+    <input id="y" name="y" type="range" min="2" max="12" value="2">
+    <br>
+    <input type="submit" value="OK">
+</form>
+<script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+<script>
+function setup() { 
+  
+    // Create canvas 
+    createCanvas(400, 400); 
+} 
+   
+function draw() { 
+      
+    // Set the background color 
+    background(244, 248, 252); 
+      
+    // Fill color relative pmouseX, 
+    // pmouseY and mouseY 
+    fill(pmouseX%255, pmouseY%255, mouseY%255); 
+      
+    // Draw circle
+      
+    circle(mouseX, mouseY, 20);
+    if (mouseIsPressed) {
+        
+    }
+}
+function doubleClicked() {
+        yslider = map(mouseY, 0, 400, 2, 12)  
+        xslider = map(mouseX, 0, 400, 2, 12)
+        console.log(xslider)
+        document.querySelector('#y').value =  yslider //(yslider+6)%12 +2;
+        document.querySelector('#x').value =  xslider;
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", window.location.href+'move', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({
+                x: parseInt(xslider),
+                y: parseInt(yslider)
+            }));
+}
+</script>
